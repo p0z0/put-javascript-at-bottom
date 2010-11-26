@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
- <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+ <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <style>
     .box {
         float:left;
@@ -11,16 +11,16 @@
     </style>
     <script type="text/javascript">
     (function(){
-        //a script addig gyûjtse az eventeket, amíg az init változót false ra nem állítjuk
+        //a script addig gyÅ±jtse az eventeket, amÃ­g az init vÃ¡ltozÃ³t false ra nem Ã¡llÃ­tjuk
         init = true;
-        //az eventeket tartalmazó tömb
+        //az eventeket tartalmazÃ³ tÃ¶mb
         clicks = new Array;
         i = 0;
         window.addEventListener('click',function(e){            
             if(init){
                 console.log(i);
                 clicks[i] = new Array;
-                // az elem amin végrehajtódott az esemény
+                // az elem amin vÃ©grehajtÃ³dott az esemÃ©ny
                 clicks[i] = e.target;
                 i++;
             }
@@ -57,16 +57,16 @@
     }
     ?>
     <script type="text/javascript">
-    // nem gyûjtjük tovább az eseményeket
+    // nem gyÅ±jtjÃ¼k tovÃ¡bb az esemÃ©nyeket
     init = false;
-    // végiglépkedünk az esemény tömbjén
+    // vÃ©giglÃ©pkedÃ¼nk az esemÃ©ny tÃ¶mbjÃ©n
     for(k in clicks){
         il = document.createEvent('MouseEvents');
-        //szimuláljuk ismét az eseményt
+        //szimulÃ¡ljuk ismÃ©t az esemÃ©nyt
         il.initMouseEvent('click', true, true, this, 1, 0, 0,0, 0, false, false, false, false, 0, null);
         clicks[k].dispatchEvent(il);
     }
-    // az egyszerû srcipt amit alap esetben a headerben helyeznénk el
+    // az egyszerÅ± srcipt amit alap esetben a headerben helyeznÃ©nk el
     function addChild(g) {
         var d = g.parentNode.children[1];
         var e = document.createElement('DIV');

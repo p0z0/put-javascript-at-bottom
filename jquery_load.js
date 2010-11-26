@@ -1,10 +1,10 @@
-// nem gyûjtjük tovább az eseményeket
+// nem gyÅ±jtjÃ¼k tovÃ¡bb az esemÃ©nyeket
 init = false;
-// végiglépkedünk az esemény tömbjén
+// vÃ©giglÃ©pkedÃ¼nk az esemÃ©ny tÃ¶mbjÃ©n
 $.each(clicks , function (k, v) {
     var il = document.createEvent('MouseEvents');
-    // "szimuláljuk" ismét az eseményt
-    // az elsõ változathoz képest this helyett window objektumot adunk meg, mivel máshol helyezkedik el a metódus
+    // "szimulÃ¡ljuk" ismÃ©t az esemÃ©nyt
+    // az elsÅ‘ vÃ¡ltozathoz kÃ©pest this helyett window objektumot adunk meg, mivel mÃ¡shol helyezkedik el a metÃ³dus
     il.initMouseEvent('click', true, true, window, 1, 0, 0,0, 0, false, false, false, false, 0, null);
     v.dispatchEvent(il);
 });

@@ -1,9 +1,9 @@
-// nem gyûjtjük tovább az eseményeket
+// nem gyÅ±jtjÃ¼k tovÃ¡bb az esemÃ©nyeket
 init = false;
-// végiglépkedünk az esemény tömbjén
+// vÃ©giglÃ©pkedÃ¼nk az esemÃ©ny tÃ¶mbjÃ©n
 for(k in clicks){
     il = document.createEvent('MouseEvents');
-    //szimuláljuk ismét az eseményt
+    //szimulÃ¡ljuk ismÃ©t az esemÃ©nyt
     il.initMouseEvent('click', true, true, this, 1, 0, 0,0, 0, false, false, false, false, 0, null);
     clicks[k].dispatchEvent(il);
 }

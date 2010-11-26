@@ -1,13 +1,13 @@
 (function(){
-    // a script addig gyûjtse az eventeket, amíg az init változót false ra nem állítjuk
+    // a script addig gyÅ±jtse az eventeket, amÃ­g az init vÃ¡ltozÃ³t false ra nem Ã¡llÃ­tjuk
     init = true;
-    // az eventeket tartalmazó tömb
+    // az eventeket tartalmazÃ³ tÃ¶mb
     clicks = new Array;
     var i = 0;
     window.addEventListener('click',function(e){            
         if(init){
             clicks[i] = new Array;
-            // az objektum amin végrehajtódott az esemény
+            // az objektum amin vÃ©grehajtÃ³dott az esemÃ©ny
             clicks[i] = e.target;
             i++;
         }

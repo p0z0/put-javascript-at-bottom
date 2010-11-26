@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
- <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+ <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <style>
     .box {
         float:left;
@@ -11,15 +11,15 @@
     </style>
     <script type="text/javascript">
     (function(){
-        // a script addig gyûjtse az eventeket, amíg az init változót false ra nem állítjuk
+        // a script addig gyÅ±jtse az eventeket, amÃ­g az init vÃ¡ltozÃ³t false ra nem Ã¡llÃ­tjuk
         init = true;
-        // az eventeket tartalmazó tömb
+        // az eventeket tartalmazÃ³ tÃ¶mb
         clicks = new Array;
         var i = 0;
         window.addEventListener('click',function(e){            
             if(init){
                 clicks[i] = new Array;
-                // az objektum amin végrehajtódott az esemény
+                // az objektum amin vÃ©grehajtÃ³dott az esemÃ©ny
                 clicks[i] = e.target;
                 i++;
             }
@@ -51,14 +51,14 @@
         <div id="test">Test division</div>
     </div>
     <?php
-    // teszteléshez töltjük az idõt, DOM-ban nem érdemes turkálni, kifagyhat a böngészõ a sok elem miatt ~60k
+    // tesztelÃ©shez tÃ¶ltjÃ¼k az idÅ‘t, DOM-ban nem Ã©rdemes turkÃ¡lni, kifagyhat a bÃ¶ngÃ©szÅ‘ a sok elem miatt ~60k
     for($i = 0;$i<=10000;$i++) {
         echo "<div><div><div><div><div><div></div></div></div></div></div></div>";
     }
     ?>
     <script src="jquery-1.4.2.js"></script>
     <script type="text/javascript">
-    // az egyszerû srcipt amit alap esetben a headerben helyeznénk el
+    // az egyszerÅ± srcipt amit alap esetben a headerben helyeznÃ©nk el
     // megadunk egy eventlistenert
     $('.butt').click(function(g) {
         var d = g.target.parentNode.children[1];
@@ -66,13 +66,13 @@
         e.innerHTML = 'Test division child';
         d.appendChild(e);
     });
-    // nem gyûjtjük tovább az eseményeket
+    // nem gyÅ±jtjÃ¼k tovÃ¡bb az esemÃ©nyeket
     init = false;
-    // végiglépkedünk az esemény tömbjén
+    // vÃ©giglÃ©pkedÃ¼nk az esemÃ©ny tÃ¶mbjÃ©n
     $.each(clicks , function (k, v) {
         var il = document.createEvent('MouseEvents');
-        // "szimuláljuk" ismét az eseményt
-        // az elsõ változathoz képest this helyett window objektumot adunk meg, mivel máshol helyezkedik el a metódus
+        // "szimulÃ¡ljuk" ismÃ©t az esemÃ©nyt
+        // az elsÅ‘ vÃ¡ltozathoz kÃ©pest this helyett window objektumot adunk meg, mivel mÃ¡shol helyezkedik el a metÃ³dus
         il.initMouseEvent('click', true, true, window, 1, 0, 0,0, 0, false, false, false, false, 0, null);
         v.dispatchEvent(il);
     });
