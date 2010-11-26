@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <style>
+    .box {
+        float:left;
+        width:7em;
+    }
+    </style>
+    <script type="text/javascript">
+    (function(){
+        //a script addig gyûjtse az eventeket, amíg az init változót false ra nem állítjuk
+        init = true;
+        //az eventeket tartalmazó tömb
+        clicks = new Array;
+        i = 0;
+        window.addEventListener('click',function(e){            
+            if(init){
+                console.log(i);
+                clicks[i] = new Array;
+                // az elem amin végrehajtódott az esemény
+                clicks[i] = e.target;
+                i++;
+            }
+        },false);
+    })();
+    </script>
+ <title>Test</title>
+</head>
+
+<body>
+    <div class="box">
+        <button id="butt" onclick="addChild(this)">Gomb</button>
+        <div id="test">Test division</div>
+    </div>
+    <div class="box">
+        <button id="butt" onclick="addChild(this)">Gomb</button>
+        <div id="test">Test division</div>
+    </div>    
+    <div class="box">
+        <button id="butt" onclick="addChild(this)">Gomb</button>
+        <div id="test">Test division</div>
+    </div>
+    <div class="box">
+        <button id="butt" onclick="addChild(this)">Gomb</button>
+        <div id="test">Test division</div>
+    </div>
+    <div class="box">
+        <button id="butt" onclick="addChild(this)">Gomb</button>
+        <div id="test">Test division</div>
+    </div>
+    <?php
+    for($i = 0;$i<=10000;$i++) {
+        echo "<div><div><div><div><div><div></div></div></div></div></div></div>";
+    }
+    ?>
+    <script type="text/javascript">
+    // nem gyûjtjük tovább az eseményeket
+    init = false;
+    // végiglépkedünk az esemény tömbjén
+    for(k in clicks){
+        il = document.createEvent('MouseEvents');
+        //szimuláljuk ismét az eseményt
+        il.initMouseEvent('click', true, true, this, 1, 0, 0,0, 0, false, false, false, false, 0, null);
+        clicks[k].dispatchEvent(il);
+    }
+    // az egyszerû srcipt amit alap esetben a headerben helyeznénk el
+    function addChild(g) {
+        var d = g.parentNode.children[1];
+        var e = document.createElement('DIV');
+        e.innerHTML = 'Test division child';
+        d.appendChild(e);
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <style>
+    .box {
+        float:left;
+        width:7em;
+    }
+    </style>
+    <script type="text/javascript">
+    (function(){
+        // a script addig gyûjtse az eventeket, amíg az init változót false ra nem állítjuk
+        init = true;
+        // az eventeket tartalmazó tömb
+        clicks = new Array;
+        var i = 0;
+        window.addEventListener('click',function(e){            
+            if(init){
+                clicks[i] = new Array;
+                // az objektum amin végrehajtódott az esemény
+                clicks[i] = e.target;
+                i++;
+            }
+        },false);
+    })();
+    </script>
+ <title>Test</title>
+</head>
+
+<body>
+    <div class="box">
+        <button class="butt" >Gomb</button>
+        <div id="test">Test division</div>
+    </div>
+    <div class="box">
+        <button class="butt" >Gomb</button>
+        <div id="test">Test division</div>
+    </div>    
+    <div class="box">
+        <button class="butt" >Gomb</button>
+        <div id="test">Test division</div>
+    </div>
+    <div class="box">
+        <button class="butt" >Gomb</button>
+        <div id="test">Test division</div>
+    </div>
+    <div class="box">
+        <button class="butt" >Gomb</button>
+        <div id="test">Test division</div>
+    </div>
+    <?php
+    // teszteléshez töltjük az idõt, DOM-ban nem érdemes turkálni, kifagyhat a böngészõ a sok elem miatt ~60k
+    for($i = 0;$i<=10000;$i++) {
+        echo "<div><div><div><div><div><div></div></div></div></div></div></div>";
+    }
+    ?>
+    <script src="jquery-1.4.2.js"></script>
+    <script type="text/javascript">
+    // az egyszerû srcipt amit alap esetben a headerben helyeznénk el
+    // megadunk egy eventlistenert
+    $('.butt').click(function(g) {
+        var d = g.target.parentNode.children[1];
+        var e = document.createElement('DIV');
+        e.innerHTML = 'Test division child';
+        d.appendChild(e);
+    });
+    // nem gyûjtjük tovább az eseményeket
+    init = false;
+    // végiglépkedünk az esemény tömbjén
+    $.each(clicks , function (k, v) {
+        var il = document.createEvent('MouseEvents');
+        // "szimuláljuk" ismét az eseményt
+        // az elsõ változathoz képest this helyett window objektumot adunk meg, mivel máshol helyezkedik el a metódus
+        il.initMouseEvent('click', true, true, window, 1, 0, 0,0, 0, false, false, false, false, 0, null);
+        v.dispatchEvent(il);
+    });
+    </script>
+</body>
+</html> 
